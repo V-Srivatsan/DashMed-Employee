@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">DashMed For Employees</string>
+
+    <string name="network_error">Something went wrong! Please check your network connection and try again!</string>
+    <string name="password_prompt">For security purposes, you need to enter your password in order to proceed.</string>
+
+    <string name="empty_pending">Woohoo! No pending orders for now... <br /> Swipe down to refresh!</string>
+
+    <string name="order_map"><u>View in map</u></string>
+
+</resources>
