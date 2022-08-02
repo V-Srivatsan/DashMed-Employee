@@ -1,6 +1,7 @@
 package com.dashmed.employee.fragments
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -58,11 +59,11 @@ class Login : Fragment() {
                     .invokeOnCompletion {
                         val res = viewModel.res
                         if (res.valid) {
-                            MainActivity.reloadFragment = true
                             with (requireActivity().getSharedPreferences("EmpPrefs", Context.MODE_PRIVATE).edit()) {
                                 putString("UID", res.uid.toString())
                                 apply()
                             }
+                            requireActivity().startActivity(Intent(requireActivity(), MainActivity::class.java))
                             requireActivity().finish()
                         }
                         else {

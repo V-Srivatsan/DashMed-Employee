@@ -11,14 +11,14 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    companion object { var reloadFragment = false }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
 
-        if (Utils.getUID(this) == null)
+        if (Utils.getUID(this) == null) {
             startActivity(Intent(this, LoginActivity::class.java))
+            this.finish()
+        }
 
         binding.bottomNav.setOnItemSelectedListener {
             replaceFragment(it.itemId)
@@ -28,20 +28,6 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNav.setOnItemReselectedListener { false }
 
         setContentView(binding.root)
-    }
-
-    override fun onResume() {
-        if (Utils.getUID(this) == null)
-            this.finish()
-
-        if (reloadFragment) {
-            if (binding.bottomNav.selectedItemId == R.id.nav_pending)
-                replaceFragment(R.id.nav_pending)
-            else
-                binding.bottomNav.selectedItemId = R.id.nav_pending
-        }
-
-        super.onResume()
     }
 
     private fun replaceFragment(itemId: Int) {
